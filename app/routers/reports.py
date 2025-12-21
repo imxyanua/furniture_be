@@ -39,9 +39,9 @@ def get_revenue_report(
     
     # Filter by date range
     if from_date:
-        query = query.filter(Order.timestamp >= datetime.fromisoformat(from_date))
+        query = query.filter(Order.date_order >= datetime.fromisoformat(from_date))
     if to_date:
-        query = query.filter(Order.timestamp <= datetime.fromisoformat(to_date))
+        query = query.filter(Order.date_order <= datetime.fromisoformat(to_date))
     
     orders = query.all()
     
@@ -50,11 +50,11 @@ def get_revenue_report(
     
     for order in orders:
         if period == "daily":
-            key = order.timestamp.strftime("%Y-%m-%d")
+            key = order.date_order.strftime("%Y-%m-%d")
         elif period == "monthly":
-            key = order.timestamp.strftime("%Y-%m")
+            key = order.date_order.strftime("%Y-%m")
         else:  # yearly
-            key = order.timestamp.strftime("%Y")
+            key = order.date_order.strftime("%Y")
         
         if key not in revenue_data:
             revenue_data[key] = {
@@ -123,7 +123,7 @@ def get_order_detail(
     
     return OrderDetailReport(
         id=order.id,
-        order_date=order.timestamp,
+        order_date=order.date_order,
         customer_name=order.full_name,
         customer_phone=order.phone,
         customer_address=f"{order.address}, {order.city}, {order.country}",
@@ -149,13 +149,13 @@ def get_all_orders(
     query = db.query(Order)
     
     if from_date:
-        query = query.filter(Order.timestamp >= datetime.fromisoformat(from_date))
+        query = query.filter(Order.date_order >= datetime.fromisoformat(from_date))
     if to_date:
-        query = query.filter(Order.timestamp <= datetime.fromisoformat(to_date))
+        query = query.filter(Order.date_order <= datetime.fromisoformat(to_date))
     if customer_name:
         query = query.filter(Order.full_name.ilike(f"%{customer_name}%"))
     
-    orders = query.order_by(Order.timestamp.desc()).limit(limit).all()
+    orders = query.order_by(Order.date_order.desc()).limit(limit).all()
     
     result = []
     for order in orders:
@@ -175,7 +175,7 @@ def get_all_orders(
         
         result.append(OrderDetailReport(
             id=order.id,
-            order_date=order.timestamp,
+            order_date=order.date_order,
             customer_name=order.full_name,
             customer_phone=order.phone,
             customer_address=f"{order.address}, {order.city}, {order.country}",
@@ -204,12 +204,13 @@ def get_top_products(
         Product.name,
         func.sum(OrderItem.quantity).label("total_quantity"),
         func.sum(OrderItem.quantity * OrderItem.price).label("total_revenue")
-    ).join(Product).join(Order)
+    ).join(Product, OrderItem.product_id == Product.id)\
+     .join(Order, OrderItem.order_id == Order.id)
     
     if from_date:
-        query = query.filter(Order.timestamp >= datetime.fromisoformat(from_date))
+        query = query.filter(Order.date_order >= datetime.fromisoformat(from_date))
     if to_date:
-        query = query.filter(Order.timestamp <= datetime.fromisoformat(to_date))
+        query = query.filter(Order.date_order <= datetime.fromisoformat(to_date))
     
     results = query.group_by(OrderItem.product_id, Product.name)\
                    .order_by(func.sum(OrderItem.quantity).desc())\

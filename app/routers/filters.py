@@ -35,7 +35,7 @@ def get_filter(
     return FilterResponse(
         id="default",
         category=category,
-        price=["Under $100", "$100-$500", "$500-$1000", "Over $1000"],
+        price=["Dưới 1.000.000", "1-5.000.000", "5-10.000.000", " Trên 10.000.000"],
         color={"Gray": "#808080", "Brown": "#8B4513", "White": "#FFFFFF", "Black": "#000000"},
         material=["Wood", "Metal", "Fabric", "Leather", "Glass"],
         feature=["Adjustable", "Storage", "Foldable", "Waterproof"],
