@@ -204,7 +204,8 @@ def get_top_products(
         Product.name,
         func.sum(OrderItem.quantity).label("total_quantity"),
         func.sum(OrderItem.quantity * OrderItem.price).label("total_revenue")
-    ).join(Product).join(Order)
+    ).join(Product, OrderItem.product_id == Product.id)\
+     .join(Order, OrderItem.order_id == Order.id)
     
     if from_date:
         query = query.filter(Order.date_order >= datetime.fromisoformat(from_date))
