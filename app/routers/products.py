@@ -135,18 +135,15 @@ def create_review(
         id=generate_id("REV"),
         product_id=product_id,
         user_id=current_user.id,
-        order_id=review_data.order_id,
-        star=review_data.star,
-        message=review_data.message,
-        img=review_data.img,
-        service=review_data.service
+        rating=review_data.rating,
+        comment=review_data.comment
     )
     
     db.add(new_review)
     
     # Update product review average
     all_reviews = db.query(Review).filter(Review.product_id == product_id).all()
-    total_stars = sum(r.star for r in all_reviews) + review_data.star
+    total_stars = sum(r.rating for r in all_reviews) + review_data.rating
     product.review_avg = total_stars / (len(all_reviews) + 1)
     
     db.commit()

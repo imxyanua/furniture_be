@@ -4,14 +4,13 @@
 -- Includes: User Shopping + Admin Management
 -- ============================================
 
+Drop database furniture_db;
+
 CREATE DATABASE IF NOT EXISTS furniture_db 
 CHARACTER SET utf8mb4 
 COLLATE utf8mb4_unicode_ci;
 
 USE furniture_db;
-
-Drop database furniture_db;
-
 
 -- ============================================
 -- CORE TABLES - USER & AUTHENTICATION
@@ -303,37 +302,36 @@ CREATE TABLE inventory_transactions (
 -- SAMPLE DATA - USERS
 -- ============================================
 
-DELETE FROM users;
 
 
-INSERT INTO users VALUES
-('USR_ADMIN01','admin@furniture.com','0123456789','123456','Admin Manager',NULL,NULL,NULL,NULL,NOW(),'active','admin'),
-('USR_ADMIN02','xyanua@gmail.com','0986252525','986252525','xyanua',NULL,NULL,NULL,'male',NOW(),'active','admin'),
-('USR_USER01','user@test.com','0987654321','123456','Test User','123 Test Street',NULL,'1990-01-01','male',NOW(),'active','user'),
-('USR_USER02','nguyen@gmail.com','0901234567','123456','Nguyễn Văn A','456 Đường Lê Lợi',NULL,'1985-05-15','male',NOW(),'active','user');
+	INSERT INTO users VALUES
+('USR_ADMIN01','admin@furniture.com','0123456789','123456','Quản Trị Viên',NULL,NULL,NULL,NULL,NOW(),'active','admin'),
+('USR_USER01','user@test.com','0987654321','123456','Nguyễn Văn A','123 Đường Lê Lợi, Quận 1, TP.HCM',NULL,'1990-01-01','male',NOW(),'active','user'),
+('USR_USER02','nguyen@gmail.com','0901234567','123456','Trần Thị B','456 Đường Trần Hưng Đạo, Quận 5, TP.HCM',NULL,'1985-05-15','female',NOW(),'active','user');
+
 -- ============================================
--- SAMPLE DATA - CATEGORIES
+-- DỮ LIỆU MẪU - DANH MỤC
 -- ============================================
 
 INSERT INTO categories VALUES 
-('CAT_001', 'Bedroom Furniture  ', 'https://via.placeholder.com/300', 'active'),
-('CAT_002', 'Entryway & Storage', 'https://via.placeholder.com/300', 'active'),
-('CAT_003', 'Gaming Furniture', 'https://via.placeholder.com/300', 'active'),
-('CAT_004', 'Bathroom Furniture', 'https://via.placeholder.com/300', 'active');
+('CAT_001', 'Nội Thất Phòng Ngủ', 'assets/categorys/Bedroom_Furniture.png', 'active'),
+('CAT_002', 'Nội Thất Lối Vào & Kho', 'assets/categorys/Entryway_Furniture_&_Storage.png', 'active'),
+('CAT_003', 'Nội Thất Gaming', 'assets/categorys/Gaming_Furniture.png', 'active'),
+('CAT_004', 'Nội Thất Phòng Tắm', 'assets/categorys/Bathroom_Furniture.png', 'active');
 
 INSERT INTO category_items VALUES 
-('CATI_001', 'CAT_001', 'Sofas', 'https://via.placeholder.com/200', 'active'),
-('CATI_002', 'CAT_001', 'Coffee Tables', 'https://via.placeholder.com/200', 'active'),
-('CATI_003', 'CAT_001', 'TV Stands', 'https://via.placeholder.com/200', 'active'),
-('CATI_004', 'CAT_002', 'Beds', 'https://via.placeholder.com/200', 'active'),
-('CATI_005', 'CAT_002', 'Wardrobes', 'https://via.placeholder.com/200', 'active'),
-('CATI_006', 'CAT_003', 'Desks', 'https://via.placeholder.com/200', 'active'),
-('CATI_007', 'CAT_003', 'Office Chairs', 'https://via.placeholder.com/200', 'active'),
-('CATI_008', 'CAT_004', 'Dining Tables', 'https://via.placeholder.com/200', 'active'),
-('CATI_009', 'CAT_004', 'Dining Chairs', 'https://via.placeholder.com/200', 'active');
+('CATI_001', 'CAT_001', 'Sofa', 'assets/categorys/LivingRoomFurniture/Coffee_tables.png', 'active'),
+('CATI_002', 'CAT_001', 'Bàn Sofa', 'assets/categorys/LivingRoomFurniture/Coffee_tables.png', 'active'),
+('CATI_003', 'CAT_001', 'Kệ Tivi', 'assets/categorys/LivingRoomFurniture/Armchairs_accent_chairs.png', 'active'),
+('CATI_004', 'CAT_002', 'Giường Ngủ', 'assets/categorys/BedroomFurniture/Beds.png', 'active'),
+('CATI_005', 'CAT_002', 'Tủ Quần Áo', 'assets/categorys/BedroomFurniture/Armoires_&_warddrobes.png', 'active'),
+('CATI_006', 'CAT_003', 'Bàn Làm Việc', 'assets/categorys/OfficeFurniture/Gaming_desks.png', 'active'),
+('CATI_007', 'CAT_003', 'Ghế Văn Phòng', 'assets/categorys/GamingFurniture/Gaming_chairs.png', 'active'),
+('CATI_008', 'CAT_004', 'Bàn Ăn', 'assets/categorys/Kitchen&DiningFurniture/Kitchen_islands.png', 'active'),
+('CATI_009', 'CAT_004', 'Ghế Ăn', 'assets/categorys/Kitchen&DiningFurniture/Kitchen_cabinets.png', 'active');
 
 -- ============================================
--- SAMPLE DATA - SUPPLIERS
+-- DỮ LIỆU MẪU - NHÀ CUNG CẤP
 -- ============================================
 
 INSERT INTO suppliers VALUES 
@@ -350,86 +348,86 @@ INSERT INTO suppliers VALUES
  '3698521470', 'ACB Bank', 'Cung cấp khung sắt, kim loại', NOW(), NOW());
 
 -- ============================================
--- SAMPLE DATA - PRODUCTS
+-- DỮ LIỆU MẪU - SẢN PHẨM
 -- ============================================
 
 INSERT INTO products VALUES 
-('PRD_001', 'Modern Fabric Sofa', 'https://via.placeholder.com/400', 
- 'Comfortable 3-Seater Sofa', 
- 'A beautiful modern sofa perfect for any living room. Made with high-quality fabric and solid wood frame.',
+('PRD_001', 'Sofa Vải Hiện Đại', 'assets/products/PRO01/PRO01-1.png', 
+ 'Sofa 3 Chỗ Ngồi Thoải Mái', 
+ 'Một chiếc sofa hiện đại tuyệt đẹp hoàn hảo cho mọi phòng khách. Làm bằng vải chất lượng cao và khung gỗ rắn chắc.',
  'active', 'CATI_001',
- '{"type": "Fabric", "origin": "Vietnam", "quality": "Premium"}',
- '{"width": "200cm", "height": "85cm", "depth": "90cm", "weight": "65kg"}',
+ '{"loai": "Vải", "xuat_xu": "Việt Nam", "chat_luong": "Cao Cấp"}',
+ '{"rong": "200cm", "cao": "85cm", "sau": "90cm", "khoi_luong": "65kg"}',
  5500000, 4500000, 4.5, 150, NOW()),
  
-('PRD_002', 'Wooden Coffee Table', 'https://via.placeholder.com/400',
- 'Rustic Oak Coffee Table',
- 'Handcrafted wooden coffee table with storage drawer. Perfect for modern or traditional homes.',
+('PRD_002', 'Bàn Sofa Gỗ Sồi', 'assets/products/PRO02/PRO02-1.png',
+ 'Bàn Sofa Gỗ Sồi Phong Cách Cổ Điển',
+ 'Bàn sofa gỗ thủ công với ngăn kéo lưu trữ. Hoàn hảo cho nhà hiện đại hoặc truyền thống.',
  'active', 'CATI_002',
- '{"type": "Oak Wood", "origin": "Vietnam", "finish": "Natural"}',
- '{"width": "120cm", "height": "45cm", "depth": "60cm", "weight": "25kg"}',
+ '{"loai": "Gỗ Sồi", "xuat_xu": "Việt Nam", "xu_ly": "Tự Nhiên"}',
+ '{"rong": "120cm", "cao": "45cm", "sau": "60cm", "khoi_luong": "25kg"}',
  2800000, 2200000, 4.7, 200, NOW()),
  
-('PRD_003', 'Executive Office Desk', 'https://via.placeholder.com/400',
- 'Premium Ergonomic Work Desk',
- 'Spacious desk with cable management system. Ideal for home office or corporate workspace.',
+('PRD_003', 'Bàn Làm Việc Giám Đốc', 'assets/products/PRO03/PRO03-1.png',
+ 'Bàn Làm Việc Cao Cấp Thiết Kế Ergonomic',
+ 'Bàn rộng rãi với hệ thống quản lý dây cáp. Lý tưởng cho văn phòng tại nhà hoặc công ty.',
  'active', 'CATI_006',
- '{"type": "MDF Wood", "origin": "Vietnam", "coating": "Laminated"}',
- '{"width": "140cm", "height": "75cm", "depth": "70cm", "weight": "35kg"}',
- 3500000, 2800000, 4.8, 180, NOW()),
+ '{"loai": "Gỗ MDF", "xuat_xu": "Việt Nam", "phu_bi": "Laminate"}',
+ '{"rong": "140cm", "cao": "75cm", "sau": "70cm", "khoi_luong": "35kg"}',
+ 3500000, 2800000, 4.8, 181, NOW()),
  
-('PRD_004', 'Ergonomic Office Chair', 'https://via.placeholder.com/400',
- 'Premium Leather Executive Chair',
- 'Comfortable chair with lumbar support and adjustable height. Perfect for long working hours.',
+('PRD_004', 'Ghế Văn Phòng Ergonomic', 'assets/products/PRO04/PRO04-1.png',
+ 'Ghế Da Cao Cấp Dành Cho Giám Đốc',
+ 'Ghế thoải mái với hỗ trợ thắt lưng và điều chỉnh chiều cao. Hoàn hảo cho làm việc nhiều giờ.',
  'active', 'CATI_007',
- '{"type": "PU Leather", "origin": "Imported", "cushion": "Memory Foam"}',
- '{"width": "65cm", "height": "120cm", "depth": "65cm", "weight": "18kg"}',
- 2500000, 1800000, 4.7, 250, NOW()),
+ '{"loai": "Da PU", "xuat_xu": "Nhập Khẩu", "dem": "Bọt Biển Memory"}',
+ '{"rong": "65cm", "cao": "120cm", "sau": "65cm", "khoi_luong": "18kg"}',
+ 2500000, 1800000, 4.7, 251, NOW()),
  
-('PRD_005', 'King Size Bed Frame', 'https://via.placeholder.com/400',
- 'Luxury Wooden Bed Frame',
- 'Elegant bed frame with headboard storage. Made from solid wood with modern design.',
+('PRD_005', 'Giường Ngủ Cỡ King', 'assets/products/PRO05/PRO05-1.png',
+ 'Khung Giường Gỗ Sang Trọng',
+ 'Khung giường thanh lịch với kho lưu trữ đầu giường. Làm từ gỗ rắn với thiết kế hiện đại.',
  'active', 'CATI_004',
- '{"type": "Solid Wood", "origin": "Vietnam", "finish": "Walnut"}',
- '{"width": "200cm", "height": "120cm", "length": "220cm", "weight": "80kg"}',
- 8500000, 7200000, 4.6, 95, NOW()),
+ '{"loai": "Gỗ Rắn", "xuat_xu": "Việt Nam", "xu_ly": "Óc Chó"}',
+ '{"rong": "200cm", "cao": "120cm", "dai": "220cm", "khoi_luong": "80kg"}',
+ 8500000, 7200000, 4.6, 96, NOW()),
  
-('PRD_006', 'Dining Table Set', 'https://via.placeholder.com/400',
- '6-Seater Dining Table',
- 'Modern dining table with 6 chairs. Perfect for family dinners and gatherings.',
+('PRD_006', 'Bộ Bàn Ăn', 'assets/products/PRO06/PRO06-1.png',
+ 'Bàn Ăn 6 Chỗ Ngồi',
+ 'Bàn ăn hiện đại với 6 ghế. Hoàn hảo cho bữa tối gia đình và các buổi họp mặt.',
  'active', 'CATI_008',
- '{"type": "Tempered Glass Top", "frame": "Metal", "origin": "Vietnam"}',
- '{"width": "160cm", "height": "75cm", "length": "90cm", "weight": "55kg"}',
+ '{"loai": "Mặt Kính Cường Lực", "khung": "Kim Loại", "xuat_xu": "Việt Nam"}',
+ '{"rong": "160cm", "cao": "75cm", "dai": "90cm", "khoi_luong": "55kg"}',
  6500000, 5500000, 4.5, 120, NOW());
 
 -- ============================================
--- SAMPLE DATA - PRODUCT ITEMS (Color Variants)
+-- DỮ LIỆU MẪU - BIẾN THỂ SẢN PHẨM (Màu Sắc)
 -- ============================================
 
 INSERT INTO product_items VALUES 
-('PRDI_001', 'PRD_001', '{"name": "Gray", "code": "#808080"}', 
- '["https://via.placeholder.com/400", "https://via.placeholder.com/400/808080"]'),
+('PRDI_001', 'PRD_001', '{"ten": "Xám", "ma": "#808080"}', 
+ '["assets/products/PRO01/PRO01-1.png", "assets/products/PRO01/PRO01-2.png"]'),
  
-('PRDI_002', 'PRD_001', '{"name": "Beige", "code": "#F5F5DC"}',
- '["https://via.placeholder.com/400", "https://via.placeholder.com/400/F5F5DC"]'),
+('PRDI_002', 'PRD_001', '{"ten": "Be", "ma": "#F5F5DC"}',
+ '["assets/products/PRO01/PRO01-3.png", "assets/products/PRO01/PRO01-4.png"]'),
  
-('PRDI_003', 'PRD_002', '{"name": "Natural Oak", "code": "#D2691E"}',
- '["https://via.placeholder.com/400", "https://via.placeholder.com/400/D2691E"]'),
+('PRDI_003', 'PRD_002', '{"ten": "Gỗ Sồi Tự Nhiên", "ma": "#D2691E"}',
+ '["assets/products/PRO02/PRO02-1.png", "assets/products/PRO02/PRO02-2.png"]'),
  
-('PRDI_004', 'PRD_003', '{"name": "Walnut Brown", "code": "#8B4513"}',
- '["https://via.placeholder.com/400"]'),
+('PRDI_004', 'PRD_003', '{"ten": "Nâu Óc Chó", "ma": "#8B4513"}',
+ '["assets/products/PRO03/PRO03-1.png"]'),
  
-('PRDI_005', 'PRD_004', '{"name": "Black Leather", "code": "#000000"}',
- '["https://via.placeholder.com/400"]'),
+('PRDI_005', 'PRD_004', '{"ten": "Da Đen", "ma": "#000000"}',
+ '["assets/products/PRO04/PRO04-1.png"]'),
  
-('PRDI_006', 'PRD_005', '{"name": "Dark Walnut", "code": "#654321"}',
- '["https://via.placeholder.com/400"]'),
+('PRDI_006', 'PRD_005', '{"ten": "Óc Chó Đậm", "ma": "#654321"}',
+ '["assets/products/PRO05/PRO05-1.png"]'),
  
-('PRDI_007', 'PRD_006', '{"name": "White & Silver", "code": "#F5F5F5"}',
- '["https://via.placeholder.com/400"]');
+('PRDI_007', 'PRD_006', '{"ten": "Trắng & Bạc", "ma": "#F5F5F5"}',
+ '["assets/products/PRO06/PRO06-1.png"]');
 
 -- ============================================
--- SAMPLE DATA - INVENTORY
+-- DỮ LIỆU MẪU - KHO HÀNG
 -- ============================================
 
 INSERT INTO inventory VALUES 
@@ -441,7 +439,7 @@ INSERT INTO inventory VALUES
 ('INV_006', 'PRD_006', 60, 6, 12, 30, NOW(), NOW());
 
 -- ============================================
--- SAMPLE DATA - NOTIFICATIONS
+-- DỮ LIỆU MẪU - THÔNG BÁO
 -- ============================================
 
 INSERT INTO notifications (id, user_id, title, message, type, reference_id, is_read, timestamp) VALUES
@@ -450,142 +448,145 @@ INSERT INTO notifications (id, user_id, title, message, type, reference_id, is_r
 ('NOTIF_003', 'USR_USER02', 'Chào mừng đến với cửa hàng!', 'Cảm ơn bạn đã đăng ký tài khoản. Chúc bạn có trải nghiệm mua sắm tuyệt vời!', 'system', NULL, TRUE, DATE_SUB(NOW(), INTERVAL 2 DAY));
 
 -- ============================================
--- SAMPLE DATA - BANNERS
+-- DỮ LIỆU MẪU - BANNER QUẢNG CÁO
 -- ============================================
 
 INSERT INTO banners VALUES 
-('BAN_001', 'https://via.placeholder.com/1200x400', 
- 'Summer Sale 2025', 'Up to 30% off on selected living room furniture', 
+('BAN_001', 'assets/banners/banner1.jpg', 
+ 'Khuyến Mãi Mùa Hè 2025', 'Giảm giá lên đến 30% cho các sản phẩm nội thất phòng khách được chọn', 
  '/products?category=CAT_001', '2025-06-01', '2025-06-30', 
  'active', 1, '["PRD_001", "PRD_002"]', NOW()),
  
-('BAN_002', 'https://via.placeholder.com/1200x400',
- 'New Arrivals', 'Check out our latest furniture collection',
+('BAN_002', 'assets/banners/banner2.jpg',
+ 'Hàng Mới Về', 'Xem bộ sưu tập nội thất mới nhất của chúng tôi',
  '/products/special/new-arrivals', '2025-01-01', '2025-12-31',
  'active', 2, '["PRD_003", "PRD_004", "PRD_005"]', NOW()),
  
-('BAN_003', 'https://via.placeholder.com/1200x400',
- 'Office Furniture Sale', 'Complete your workspace with our premium desks and chairs',
+('BAN_003', 'assets/banners/banner3.jpg',
+ 'Giảm Giá Nội Thất Văn Phòng', 'Hoàn thiện không gian làm việc với bàn và ghế cao cấp',
  '/products?category=CAT_003', '2025-03-01', '2025-03-31',
  'active', 3, '["PRD_003", "PRD_004"]', NOW());
 
 -- ============================================
--- SAMPLE DATA - COUNTRIES
+-- DỮ LIỆU MẪU - QUỐC GIA
 -- ============================================
 
 INSERT INTO countries VALUES 
-('CTR_001', 'Vietnam', 'VN', 
- '["Ho Chi Minh City", "Hanoi", "Da Nang", "Can Tho", "Hai Phong", "Nha Trang"]'),
+('CTR_001', 'Việt Nam', 'VN', 
+ '["Thành phố Hồ Chí Minh", "Hà Nội", "Đà Nẵng", "Cần Thơ", "Hải Phòng", "Nha Trang", "Huế", "Vũng Tàu"]'),
  
-('CTR_002', 'Thailand', 'TH',
+('CTR_002', 'Thái Lan', 'TH',
  '["Bangkok", "Chiang Mai", "Phuket", "Pattaya"]'),
  
 ('CTR_003', 'Singapore', 'SG',
  '["Singapore"]');
 
 -- ============================================
--- SAMPLE DATA - FILTERS
+-- DỮ LIỆU MẪU - BỘ LỌC
 -- ============================================
 
 INSERT INTO filters VALUES (
     'default',
     NULL,
-    '["Under $100", "$100-$500", "$500-$1000", "$1000-$3000", "Over $3000"]',
-    '{"Gray": "#808080", "Brown": "#8B4513", "White": "#FFFFFF", "Black": "#000000", "Beige": "#F5F5DC", "Walnut": "#654321"}',
-    '["Wood", "Metal", "Fabric", "Leather", "Glass", "MDF", "Rattan"]',
-    '["Adjustable", "Storage", "Foldable", "Waterproof", "Eco-friendly", "Ergonomic", "Modern Design"]',
-    '["Modern", "Vintage", "Minimalist", "Luxury", "Scandinavian", "Industrial", "Contemporary"]',
-    '{"min": 0, "max": 20000000}',
-    '["Classic", "Modern", "Contemporary", "Traditional", "Industrial", "Scandinavian"]',
-    '["Price: Low to High", "Price: High to Low", "Name A-Z", "Newest First", "Best Review", "Best Seller"]'
+    '["Dưới 1.000.000", "1-5.000.000", "5-10.000.000", "Trên 10.000.000"]',
+    '{"Xám": "#808080", "Nâu": "#8B4513", "Trắng": "#FFFFFF", "Đen": "#000000", "Be": "#F5F5DC"}',
+    '["Gỗ", "Kim Loại", "Vải", "Da", "Kính", "MDF", "Mây Tre"]',
+    '["Có Thể Điều Chỉnh", "Có Ngăn Chứa", "Có Thể Gấp", "Chống Nước", "Thân Thiện Môi Trường", "Thiết Kế Ergonomic", "Thiết Kế Hiện Đại"]',
+    '["Hiện Đại", "Cổ Điển", "Tối Giản", "Sang Trọng", "Scandinavian", "Công Nghiệp", "Đương Đại"]',
+    '{"toi_thieu": 0, "toi_da": 20000000}',
+    '["Cổ Điển", "Hiện Đại", "Đương Đại", "Truyền Thống", "Công Nghiệp", "Scandinavian"]',
+    '["Giá: Thấp đến Cao", "Giá: Cao đến Thấp", "Tên A-Z", "Mới Nhất", "Đánh Giá Cao Nhất", "Bán Chạy Nhất"]'
 );
 
 -- ============================================
--- SAMPLE DATA - REVIEWS
+-- DỮ LIỆU MẪU - ĐÁNH GIÁ
 -- ============================================
 
 INSERT INTO reviews VALUES 
 ('REV_001', 'USR_USER01', 'PRD_001', 4.5, 
- 'Very comfortable sofa! Good quality fabric and sturdy construction.', NOW()),
+ 'Sofa rất thoải mái! Chất lượng vải tốt và kết cấu chắc chắn.', NOW()),
  
 ('REV_002', 'USR_USER02', 'PRD_001', 5.0,
- 'Excellent product! Worth every penny. Highly recommended!', NOW()),
+ 'Sản phẩm xuất sắc! Xứng đáng từng đồng. Rất khuyến khích!', NOW()),
  
 ('REV_003', 'USR_USER01', 'PRD_002', 4.5,
- 'Beautiful coffee table. The wood quality is great and it has nice storage space.', NOW()),
+ 'Bàn sofa đẹp. Chất lượng gỗ tuyệt vời và có không gian lưu trữ tiện lợi.', NOW()),
  
 ('REV_004', 'USR_USER02', 'PRD_004', 5.0,
- 'Best office chair I ever bought! Very comfortable for long hours.', NOW());
+ 'Chiếc ghế văn phòng tốt nhất tôi từng mua! Rất thoải mái cho làm việc nhiều giờ.', NOW()),
+ 
+('REV_005', 'USR_USER01', 'PRD_005', 2.0,
+ 'Chưa chất lượng lắm', NOW());
 
--- ============================================
--- TRIGGERS - AUTO UPDATE REVIEW AVERAGE
--- ============================================
+	-- ============================================
+	-- TRIGGERS - AUTO UPDATE REVIEW AVERAGE
+	-- ============================================
 
--- =============================================
--- Update Database with Assets Paths for Flutter
--- =============================================
+	-- =============================================
+	-- Update Database with Assets Paths for Flutter
+	-- =============================================
 
 
--- Update Banners with assets paths
-UPDATE banners SET img = 'assets/banners/banner1.jpg' WHERE id = 'BAN_001';
-UPDATE banners SET img = 'assets/banners/banner2.jpg' WHERE id = 'BAN_002';
-UPDATE banners SET img = 'assets/banners/banner3.jpg' WHERE id = 'BAN_003';
+	-- Update Banners with assets paths
+	UPDATE banners SET img = 'assets/banners/banner1.jpg' WHERE id = 'BAN_001';
+	UPDATE banners SET img = 'assets/banners/banner2.jpg' WHERE id = 'BAN_002';
+	UPDATE banners SET img = 'assets/banners/banner3.jpg' WHERE id = 'BAN_003';
 
--- Update Categories with assets paths
-UPDATE categories SET img = 'assets/categorys/Bedroom_Furniture.png' WHERE id = 'CAT_001';
-UPDATE categories SET img = 'assets/categorys/Entryway_Furniture_&_Storage.png' WHERE id = 'CAT_002';
-UPDATE categories SET img = 'assets/categorys/Gaming_Furniture.png' WHERE id = 'CAT_003';
-UPDATE categories SET img = 'assets/categorys/Bathroom_Furniture.png' WHERE id = 'CAT_004';
-UPDATE categories SET img = 'assets/categorys/BathroomFurniture/Bathroom_cabinets.png' WHERE id = 'CAT_005';
-UPDATE categories SET img = 'assets/categorys/EntrywayFurniture&Storage/Banches.png' WHERE id = 'CAT_006';
-UPDATE categories SET img = 'assets/categorys/KidsFurniture/Kids_armchair.png' WHERE id = 'CAT_007';
-UPDATE categories SET img = 'assets/categorys/GamingFurniture/Gaming_chairs.png' WHERE id = 'CAT_008';
-UPDATE categories SET img = 'assets/categorys/PatioFurniture/Patio_sets.png' WHERE id = 'CAT_009';
+	-- Update Categories with assets paths
+	UPDATE categories SET img = 'assets/categorys/Bedroom_Furniture.png' WHERE id = 'CAT_001';
+	UPDATE categories SET img = 'assets/categorys/Entryway_Furniture_&_Storage.png' WHERE id = 'CAT_002';
+	UPDATE categories SET img = 'assets/categorys/Gaming_Furniture.png' WHERE id = 'CAT_003';
+	UPDATE categories SET img = 'assets/categorys/Bathroom_Furniture.png' WHERE id = 'CAT_004';
+	UPDATE categories SET img = 'assets/categorys/BathroomFurniture/Bathroom_cabinets.png' WHERE id = 'CAT_005';
+	UPDATE categories SET img = 'assets/categorys/EntrywayFurniture&Storage/Banches.png' WHERE id = 'CAT_006';
+	UPDATE categories SET img = 'assets/categorys/KidsFurniture/Kids_armchair.png' WHERE id = 'CAT_007';
+	UPDATE categories SET img = 'assets/categorys/GamingFurniture/Gaming_chairs.png' WHERE id = 'CAT_008';
+	UPDATE categories SET img = 'assets/categorys/PatioFurniture/Patio_sets.png' WHERE id = 'CAT_009';
 
--- Update Category Items with assets paths
--- Living Room
-UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Coffee_tables.png' WHERE id = 'CATI_001';
-UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Coffee_tables.png' WHERE id = 'CATI_002';
-UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Armchairs_accent_chairs.png' WHERE id = 'CATI_003';
+	-- Update Category Items with assets paths
+	-- Living Room
+	UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Coffee_tables.png' WHERE id = 'CATI_001';
+	UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Coffee_tables.png' WHERE id = 'CATI_002';
+	UPDATE category_items SET img = 'assets/categorys/LivingRoomFurniture/Armchairs_accent_chairs.png' WHERE id = 'CATI_003';
 
--- Bedroom
-UPDATE category_items SET img = 'assets/categorys/BedroomFurniture/Beds.png' WHERE id = 'CATI_004';
-UPDATE category_items SET img = 'assets/categorys/BedroomFurniture/Armoires_&_warddrobes.png' WHERE id = 'CATI_005';
+	-- Bedroom
+	UPDATE category_items SET img = 'assets/categorys/BedroomFurniture/Beds.png' WHERE id = 'CATI_004';
+	UPDATE category_items SET img = 'assets/categorys/BedroomFurniture/Armoires_&_warddrobes.png' WHERE id = 'CATI_005';
 
--- Office
-UPDATE category_items SET img = 'assets/categorys/OfficeFurniture/Gaming_desks.png' WHERE id = 'CATI_006' AND name = 'Desks';
-UPDATE category_items SET img = 'assets/categorys/GamingFurniture/Gaming_chairs.png' WHERE id = 'CATI_007';
+	-- Office
+	UPDATE category_items SET img = 'assets/categorys/OfficeFurniture/Gaming_desks.png' WHERE id = 'CATI_006' AND name = 'Desks';
+	UPDATE category_items SET img = 'assets/categorys/GamingFurniture/Gaming_chairs.png' WHERE id = 'CATI_007';
 
--- Kitchen & Dining
-UPDATE category_items SET img = 'assets/categorys/Kitchen&DiningFurniture/Kitchen_islands.png' WHERE id = 'CATI_008';
-UPDATE category_items SET img = 'assets/categorys/Kitchen&DiningFurniture/Kitchen_cabinets.png' WHERE id = 'CATI_009';
+	-- Kitchen & Dining
+	UPDATE category_items SET img = 'assets/categorys/Kitchen&DiningFurniture/Kitchen_islands.png' WHERE id = 'CATI_008';
+	UPDATE category_items SET img = 'assets/categorys/Kitchen&DiningFurniture/Kitchen_cabinets.png' WHERE id = 'CATI_009';
 
-SELECT id, name, img FROM categories LIMIT 2;
+	SELECT id, name, img FROM categories LIMIT 2;
 
-SELECT id, img FROM products LIMIT 5;
+	SELECT id, img FROM products LIMIT 5;
 
--- Update Products with assets paths
--- Bạn cần đặt ảnh vào: assets/products/PRO01/, assets/products/PRO02/, etc.
--- Ví dụ với các sản phẩm hiện có:
+	-- Update Products with assets paths
+	-- Bạn cần đặt ảnh vào: assets/products/PRO01/, assets/products/PRO02/, etc.
+	-- Ví dụ với các sản phẩm hiện có:
 
-UPDATE products SET img = 'assets/products/PRO01/PRO01-1.png' WHERE id = 'PRD_001';
-UPDATE products SET img = 'assets/products/PRO02/PRO02-1.png' WHERE id = 'PRD_002';
-UPDATE products SET img = 'assets/products/PRO03/PRO03-1.png' WHERE id = 'PRD_003';  -- Dùng -1.png thay vì MAIN
-UPDATE products SET img = 'assets/products/PRO04/PRO04-1.png' WHERE id = 'PRD_004';  -- Dùng -1.png thay vì MAIN
-UPDATE products SET img = 'assets/products/PRO05/PRO05-1.png' WHERE id = 'PRD_005';  -- Dùng -1.png thay vì MAIN
-UPDATE products SET img = 'assets/products/PRO06/PRO06-1.png' WHERE id = 'PRD_006';
-UPDATE products SET img = 'assets/products/PRO07/PRO07-1.png' WHERE id = 'PRD_007';  -- Nếu có
-UPDATE products SET img = 'assets/products/PRO08/PRO08-1.png' WHERE id = 'PRD_008';  -- Nếu có
-UPDATE products SET img = 'assets/products/PRO09/PRO09-1.png' WHERE id = 'PRD_009';  -- Nếu có
+	UPDATE products SET img = 'assets/products/PRO01/PRO01-1.png' WHERE id = 'PRD_001';
+	UPDATE products SET img = 'assets/products/PRO02/PRO02-1.png' WHERE id = 'PRD_002';
+	UPDATE products SET img = 'assets/products/PRO03/PRO03-1.png' WHERE id = 'PRD_003';  -- Dùng -1.png thay vì MAIN
+	UPDATE products SET img = 'assets/products/PRO04/PRO04-1.png' WHERE id = 'PRD_004';  -- Dùng -1.png thay vì MAIN
+	UPDATE products SET img = 'assets/products/PRO05/PRO05-1.png' WHERE id = 'PRD_005';  -- Dùng -1.png thay vì MAIN
+	UPDATE products SET img = 'assets/products/PRO06/PRO06-1.png' WHERE id = 'PRD_006';
+	UPDATE products SET img = 'assets/products/PRO07/PRO07-1.png' WHERE id = 'PRD_007';  -- Nếu có
+	UPDATE products SET img = 'assets/products/PRO08/PRO08-1.png' WHERE id = 'PRD_008';  -- Nếu có
+	UPDATE products SET img = 'assets/products/PRO09/PRO09-1.png' WHERE id = 'PRD_009';  -- Nếu có
 
--- Update Product Items with assets paths
-UPDATE product_items SET img = '["assets/products/PRO01/PRO01-1.png", "assets/products/PRO01/PRO01-2.png"]' WHERE id = 'PRDI_001';
-UPDATE product_items SET img = '["assets/products/PRO01/PRO01-3.png", "assets/products/PRO01/PRO01-4.png"]' WHERE id = 'PRDI_002';
-UPDATE product_items SET img = '["assets/products/PRO02/PRO02-1.png", "assets/products/PRO02/PRO02-2.png"]' WHERE id = 'PRDI_003';
-UPDATE product_items SET img = '["assets/products/PRO03/PRO03-1.png"]' WHERE id = 'PRDI_004';
-UPDATE product_items SET img = '["assets/products/PRO04/PRO04-1.png"]' WHERE id = 'PRDI_005';
-UPDATE product_items SET img = '["assets/products/PRO05/PRO05-1.png"]' WHERE id = 'PRDI_006';
-UPDATE product_items SET img = '["assets/products/PRO06/PRO06-1.png"]' WHERE id = 'PRDI_007';
+	-- Update Product Items with assets paths
+	UPDATE product_items SET img = '["assets/products/PRO01/PRO01-1.png", "assets/products/PRO01/PRO01-2.png"]' WHERE id = 'PRDI_001';
+	UPDATE product_items SET img = '["assets/products/PRO01/PRO01-3.png", "assets/products/PRO01/PRO01-4.png"]' WHERE id = 'PRDI_002';
+	UPDATE product_items SET img = '["assets/products/PRO02/PRO02-1.png", "assets/products/PRO02/PRO02-2.png"]' WHERE id = 'PRDI_003';
+	UPDATE product_items SET img = '["assets/products/PRO03/PRO03-1.png"]' WHERE id = 'PRDI_004';
+	UPDATE product_items SET img = '["assets/products/PRO04/PRO04-1.png"]' WHERE id = 'PRDI_005';
+	UPDATE product_items SET img = '["assets/products/PRO05/PRO05-1.png"]' WHERE id = 'PRDI_006';
+	UPDATE product_items SET img = '["assets/products/PRO06/PRO06-1.png"]' WHERE id = 'PRDI_007';
 
 -- Update User avatar paths (nếu có)
 -- UPDATE users SET img = 'assets/icons/user.png' WHERE img IS NULL OR img = '';
@@ -685,4 +686,4 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 SHOW TABLES;
 DESCRIBE orders;
-DESCRIBE order_items;
+DESCRIBE order_items;	

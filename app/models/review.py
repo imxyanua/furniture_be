@@ -10,8 +10,8 @@ class Review(Base):
     id = Column(String(50), primary_key=True, index=True)
     user_id = Column(String(50), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
     product_id = Column(String(50), ForeignKey("products.id", ondelete="CASCADE"), nullable=False, index=True)
-    rating = Column(Float, nullable=False)  # ✅ Đúng tên trong DB
-    comment = Column(Text, nullable=True)   # ✅ Đúng tên trong DB
+    rating = Column(Float, nullable=False)
+    comment = Column(Text, nullable=True)
     timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True)
 
     # Relationships

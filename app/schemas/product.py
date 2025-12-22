@@ -15,11 +15,9 @@ class ProductItemSchema(BaseModel):
 class ReviewSchema(BaseModel):
     id: str
     user_id: str
-    order_id: Optional[str] = None
-    star: float
-    message: Optional[str] = None
-    img: Optional[List[str]] = None
-    service: Optional[Dict[str, Any]] = None
+    product_id: str
+    rating: float
+    comment: Optional[str] = None
     timestamp: datetime
 
     class Config:
@@ -81,16 +79,10 @@ class ProductResponse(BaseModel):
 
 
 class ReviewCreate(BaseModel):
-    product_id: str
-    order_id: Optional[str] = None
-    star: float
-    message: Optional[str] = None
-    img: Optional[List[str]] = None
-    service: Optional[Dict[str, Any]] = None
+    rating: float
+    comment: Optional[str] = None
 
 
 class ReviewUpdate(BaseModel):
-    star: Optional[float] = None
-    message: Optional[str] = None
-    img: Optional[List[str]] = None
-    service: Optional[Dict[str, Any]] = None
+    rating: Optional[float] = None
+    comment: Optional[str] = None
