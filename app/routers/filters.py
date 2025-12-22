@@ -36,11 +36,12 @@ def get_filter(
         id="default",
         category=category,
         price=["Dưới 1.000.000", "1-5.000.000", "5-10.000.000", " Trên 10.000.000"],
-        color={"Gray": "#808080", "Brown": "#8B4513", "White": "#FFFFFF", "Black": "#000000"},
-        material=["Wood", "Metal", "Fabric", "Leather", "Glass"],
-        feature=["Adjustable", "Storage", "Foldable", "Waterproof"],
-        popular_search=["Modern", "Vintage", "Minimalist", "Luxury"],
+        color={"Xám": "#808080", "Nâu": "#8B4513", "Trắng": "#FFFFFF", "Đen": "#000000", "Beige": "#F5F5DC", },
+        material=["Gỗ", "Kim loại", "Vải", "Da", "Kính"],
+        feature=["Điều chỉnh được", "Lưu trữ", "Gấp được", "Chống thấm nước", "Thân thiện với môi trường"],
+        popular_search=["Hiện đại", "Cổ điển", "Tối giản", "Sang trọng", "Scandinavian"],
         price_range={"min": 0, "max": 10000},
-        series=["Classic", "Modern", "Contemporary", "Traditional"],
-        sort_by=["Price: Low to High", "Price: High to Low", "Name", "Newest", "Best Review"]
+        series=["Đơn giản", "Hiện đại", "Đương đại", "Truyền thống", "Công nghiệp"],
+        sort_by=["Giá: Thấp đến Cao", "Giá: Cao đến Thấp", "Tên A-Z", "Mới nhất", "Đánh giá cao nhất", "Bán chạy nhất"]
     )
+    

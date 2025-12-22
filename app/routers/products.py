@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import desc, asc
+from sqlalchemy import desc, asc, or_
 from typing import List, Optional
 from ..database import get_db
 from ..schemas.product import ProductResponse, ReviewSchema, ReviewCreate, ReviewUpdate, ProductCreate, ProductUpdate
@@ -29,7 +29,14 @@ def get_products(
     query = db.query(Product).options(joinedload(Product.product_items)).filter(Product.status == "active")
     
     if name:
-        query = query.filter(Product.name.like(f"%{name}%"))
+        # Tìm kiếm trong cả name, title và description
+        query = query.filter(
+            or_(
+                Product.name.ilike(f"%{name}%"),
+                Product.title.ilike(f"%{name}%"),
+                Product.description.ilike(f"%{name}%")
+            )
+        )
     if category_id:
         query = query.filter(Product.category_id == category_id)
     if min_price is not None:
